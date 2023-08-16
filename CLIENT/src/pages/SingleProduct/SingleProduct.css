@@ -1,0 +1,108 @@
+.description-wrapper h4 , .reviews-wrapper h3 {
+  font-size: 26px;
+  color: #1c1c1b;
+  margin-bottom: 10px;
+}
+
+.description-wrapper p {
+  font-size: 14px;
+  color: var(--color-777777)
+}
+
+
+
+.review-inner-wrapper {
+  background-color: #fff;
+  padding: 30px;  
+}
+.review-head {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 20px;
+}
+.review-head h4 {
+  font-size: 18px;
+  color: var(--color-1c1c1b);
+}
+.review-head p , .review-head a {
+  font-size: 14px;
+  color:var(--color-777777) !important;
+}
+.review-form h4 {
+  font-size: 16px;
+  color: var(--color-777777);
+}
+.review-form {
+  border-bottom: 1px solid rgb(0, 0, 0,0.1);
+}
+.review p{
+  font-size: 14px;
+  color: var(--color-777777);
+}
+.review:not(:last-child) {
+  border-bottom: 1px solid rgb(0, 0, 0,0.1);
+}
+
+.main-product-image {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.main-product-image > div{
+  border: 1px solid rgba(0,0,0,0.25);
+}
+.main-product-image img {
+  object-fit: cover;
+}
+.other-product-images {
+  background-color: #fff;
+  padding: 20px;
+}
+.other-product-images > div {
+  width: 48%;
+  padding: 20px;
+  border: 1px solid rgba(0,0,0,0.25);
+}
+
+.main-product-details {
+  padding: 30px 20px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+.border-bottom {
+  border-bottom: 1px solid rgba(0,0,0,0.25); ;
+}
+.main-product-details h3.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-1c1c1b);
+  margin-bottom: 10px;
+}
+.main-product-details p.price {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--color-1c1c1b);
+}
+.main-product-details a {
+  font-size: 14px;
+  color: var(--color-777777);
+}
+
+.main-product-details a.review-btn, .t-review {
+  color: var(--color-777777);
+  font-size: 13px;
+}
+.product-heading {
+  font-size: 14px;
+  color: var(--color-1c1c1b);
+  margin-bottom: 0px;
+}
+.product-data {
+  font-size: 13px;
+  color: var(--color-777777);
+  margin-bottom: 0px;
+}
+.signup {
+  border: none;
+}

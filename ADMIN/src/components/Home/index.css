@@ -1,0 +1,14 @@
+.wrapper-home {
+  margin-left: 300px;
+}
+.content-home {
+  min-height: 93vh;
+  text-align: left;
+  border-radius: 10px;
+  margin:10px;
+  background-color: #fff;
+  padding: 15px;
+}
+.content-home img {
+  width: 100%;
+}

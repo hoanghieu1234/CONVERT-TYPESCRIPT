@@ -1,0 +1,102 @@
+/* CSS reset để đảm bảo các đối tượng trong table hiển thị đúng */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style cho wrapper */
+.wrapper-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+}
+
+/* Style cho content */
+.mt-550 {
+  /* margin-top: 550px; */
+}
+
+/* Style cho table */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+/* Style cho các hàng và cột của table */
+.user-table th,
+.user-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Style cho header của table */
+.user-table th {
+  background-color: #f2f2f2;
+}
+
+/* Style cho các nút chỉnh sửa và xóa */
+.btn-edit,
+.btn-delete {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 80px;
+}
+
+.btn-edit {
+  background-color: #28a745;
+}
+.btn-delete {
+  margin-top: 5px;
+}
+
+/* Hover cho các nút */
+.btn-edit:hover,
+.btn-delete:hover {
+  opacity: 0.8;
+}
+
+/* Style cho input tìm kiếm */
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Style cho input khi focus */
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+#btn {
+  width: 100%;
+}
+
+.btn-block {
+  padding: 8px 12px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 80px;
+}
+.btn-unblock {
+  padding: 8px 12px;
+  background-color: #00ff44;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 80px;
+}

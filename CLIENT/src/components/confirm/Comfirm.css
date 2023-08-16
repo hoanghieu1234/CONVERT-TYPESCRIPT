@@ -1,0 +1,39 @@
+/* ConfirmModal.css */
+
+/* Customize modal styles */
+.confirm-modal {
+    .modal-content {
+      border-radius: 8px;
+    }
+  
+    .modal-header {
+      background-color: #f8f9fa;
+      border-bottom: none;
+      padding: 1rem 1.5rem;
+    }
+  
+    .modal-title {
+      font-size: 1.25rem;
+    }
+  
+    .modal-body {
+      padding: 1.5rem;
+    }
+  
+    .modal-footer {
+      border-top: none;
+      padding: 1rem 1.5rem;
+    }
+  
+    .btn-secondary {
+      background-color: #f8f9fa;
+      border: 1px solid #ced4da;
+      color: #333;
+    }
+  
+    .btn-danger {
+      background-color: #dc3545;
+      border: none;
+    }
+  }
+  

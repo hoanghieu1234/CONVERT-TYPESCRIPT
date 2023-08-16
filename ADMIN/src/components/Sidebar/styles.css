@@ -1,0 +1,48 @@
+.wrapper {
+  padding: 30px 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width:300px;
+  background-color: #18191a;
+  color:#fff;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.list-item-route {
+  margin-top: 50px;
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.list-item-route li a {
+  cursor: pointer;
+  padding: 20px 10px;
+}
+
+.list-item-route li.active {
+  border-left: 5px solid #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.list-item-route li:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.logout {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+}

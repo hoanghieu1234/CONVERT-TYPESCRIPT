@@ -1,0 +1,126 @@
+/* Home Page Start*/
+.main-banner-content {
+  top: 15%;
+  left: 5%;
+}
+.main-banner-content h4 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-bf4800);
+  margin: 0 0 12px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+.main-banner-content h5 {
+  font-size: 42px;
+  line-height: 54px;
+  letter-spacing: -2px;
+  font-weight: 500;
+  text-transform: none;
+}
+.main-banner-content p {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0.4px;
+  color: var(--color-131921);
+}
+/* small-banner */
+.small-banner-content {
+  top: 25%;
+  left: 10%;
+}
+.small-banner-content h4 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-bf4800);
+  margin: 0 0 12px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+.small-banner-content h5 {
+  font-size: 22px;
+  line-height: 34px;
+  letter-spacing: -2px;
+  font-weight: 500;
+  text-transform: none;
+}
+.small-banner-content p {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.4px;
+  color: var(--color-131921);
+}
+.small-banner {
+  width: 49%;
+}
+/* home wrapper-1-end */
+
+/* HOME-WRAPPER-2-STARTER */
+.home-wrapper-2 {
+  background-color: var(--color-f5f5f7);
+}
+/* HOME-WRAPPER-2-END */
+
+/* HOME-WRAPPER-3-STARTER */
+.categories {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+.categories > div {
+  width: 25%;
+  padding: 10px 10px 10px 20px;
+}
+.categories > div > div {
+  width: 60%;
+}
+.categories > div:nth-child(1),
+.categories > div:nth-child(2),
+.categories > div:nth-child(3),
+.categories > div:nth-child(4) {
+  border-bottom: 1px solid var(--color-ededed);
+}
+.categories > div:nth-child(1),
+.categories > div:nth-child(2),
+.categories > div:nth-child(3) {
+  border-right: 1px solid var(--color-ededed);
+}
+.categories > div:nth-child(5),
+.categories > div:nth-child(6),
+.categories > div:nth-child(7) {
+  border-right: 1px solid var(--color-ededed);
+}
+/* HOME-WRAPPER-3-END */
+
+/* Famous Product Started */
+.famous-card  .famous-content {
+  top: 10%;
+  left: 5%;
+}
+.famous-card img {
+    border-radius: 10px;
+    height: 416px;
+    object-fit: cover;
+}
+.famous-content  h5{
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400px;
+  color:#fff;
+  margin-bottom: 7px;
+  text-transform: uppercase;
+}
+.famous-content  h6{
+  font-size: 28px;
+  line-height: 38px;
+  font-weight: 500;
+  color:#fff;
+}
+.famous-content  p{
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 100;
+  color:#fff;
+}
