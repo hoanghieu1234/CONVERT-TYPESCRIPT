@@ -5,7 +5,7 @@ class commentAPI {
     const url = "/api/v1/post-comments";
     return axiosClient.post(url, param);
   }
-  static getCartItem() {
+  static getComment() {
     const url = "/api/v1/get-comments";
     return axiosClient.get(url);
   }

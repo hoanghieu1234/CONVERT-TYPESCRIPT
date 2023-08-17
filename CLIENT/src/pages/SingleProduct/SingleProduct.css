@@ -9,6 +9,10 @@
   color: var(--color-777777)
 }
 
+.reviews {
+  max-height: 200px;
+  overflow-y: scroll;
+}
 
 
 .review-inner-wrapper {

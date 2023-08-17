@@ -4,19 +4,16 @@ import CommentModel from "../models/Comment.Model"; // Đảm bảo đường d�
 // Controller để tạo mới Comment
 const createComment = async (req: Request, res: Response) => {
   try {
-    const { user, product, content, rating } = req.body;
+    const { idUser, idProduct, content } = req.body;
 
     // Tạo Comment mới
     const newComment = new CommentModel({
-      user,
-      product,
+      idUser,
+      idProduct,
       content,
-      rating,
     });
-
     // Lưu Comment vào cơ sở dữ liệu
     await newComment.save();
-
     res.status(201).json({ success: true, comment: newComment });
   } catch (error) {
     console.error("Error creating comment:", error);
@@ -25,11 +22,17 @@ const createComment = async (req: Request, res: Response) => {
 };
 
 // Controller để lấy danh sách Comment
-const getComments = async (_req: Request, res: Response) => {
+const getComments = async (req: Request, res: Response) => {
+  const idProduct = req.params.id;
+  console.log("ibProduct",req);
   try {
     // Lấy danh sách Comment từ cơ sở dữ liệu
-    const comments = await CommentModel.find();
+    const comments = await CommentModel.find({ idProduct: idProduct }).populate(
+      "idUser"
+    );
 
+    console.log(comments,123);
+    
     res.status(200).json({ success: true, comments });
   } catch (error) {
     console.error("Error getting comments:", error);

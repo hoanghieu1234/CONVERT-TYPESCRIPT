@@ -4,7 +4,7 @@ import Meta from "../../components/Meta/Meta";
 import ReactStars from "react-rating-star-with-type";
 import "./SingleProduct.css";
 import Color from "../../components/color/color";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { LuGitCompare } from "react-icons/lu";
 import { AiOutlineHeart } from "react-icons/ai";
 import productAPI from "../../api/product.api";
@@ -14,6 +14,14 @@ import "react-toastify/dist/ReactToastify.css";
 import LoadingComponent from "../../components/LoadingComponent";
 import { updateState } from "../../redux/reduce/updateSlice";
 import { useDispatch } from "react-redux";
+import BaseAxios from "../../api/AxiosClient";
+import axios from "axios";
+
+interface Comment {
+  idUser: string;
+  content: string;
+  // Các thuộc tính khác của comment
+}
 
 const SingleProduct = () => {
   const [orderedProduct, _] = useState(true);
@@ -24,21 +32,25 @@ const SingleProduct = () => {
   const [isLoading, setIsLoading] = useState(true);
   const idProduct = location.pathname.split("/")[2];
   const idUser = getUserLogin?.data?._id;
-
+  const params = useParams();
   // COMMENT START
   // const [rating, setRating] = useState(0);
-  // const [commentContent, setCommentContent] = useState("");
+  const [commentContent, setCommentContent] = useState("");
+  const [inputComment, setInputComment] = useState<string>("");
+  const [comment, setCommnet] = useState<Comment[]>([]); // Đảm bảo rằng kiểu Comment[] phù hợp với cấu trúc của dữ liệu từ API trả về
+  const [shouldFetchComments, setShouldFetchComments] = useState(true);
 
+  console.log(comment, "hihuha");
 
   // const handleRatingChange = (newRating: number) => {
   //   setRating(newRating);
   // };
 
-  // const handleCommentChange = (
-  //   event: React.ChangeEvent<HTMLTextAreaElement>
-  // ) => {
-  //   setCommentContent(event.target.value);
-  // };
+  const handleCommentChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setCommentContent(event.target.value);
+  };
   // COMMENT END
 
   const dispatch = useDispatch();
@@ -99,7 +111,41 @@ const SingleProduct = () => {
   };
 
   //  SUBMIT COMMENTS
+  const handleSubmitComment = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!getUserLogin) {
+      navigate("/login");
+      return;
+    }
+    try {
+      const requestBody = {
+        idUser: idUser,
+        idProduct: params.id,
+        content: commentContent,
+      };
+      await BaseAxios.post("/api/v1/post-comments", requestBody);
+      setInputComment("");
+      setShouldFetchComments(!shouldFetchComments);
+    } catch (error) {
+      console.log("Lỗi khi gọi API" + error);
+    }
+  };
 
+  // GET COMMENT RENDER
+  useEffect(() => {
+    const getComment = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/v1/get-comments/${params.id}`
+        );
+
+        setCommnet(response.data.comments);
+      } catch (error) {
+        console.log("Lỗi khi gọi API" + error);
+      }
+    };
+    getComment();
+  }, [shouldFetchComments]);
   return (
     <>
       {isLoading && <LoadingComponent />}
@@ -285,7 +331,7 @@ const SingleProduct = () => {
                         // edit={false} // Dòng này ngăn ko cho sữa
                         activeColor="#ffd700"
                       />
-                      <p className="mb-0">Based on 2 Reviews</p>
+                      <p className="mb-0">{comment.length} Review</p>
                     </div>
                   </div>
                   {orderedProduct && (
@@ -321,37 +367,38 @@ const SingleProduct = () => {
                         rows={4}
                         className="w-100 form-control"
                         placeholder="comments"
-                        // value={commentContent}
-                        // onChange={handleCommentChange}
+                        value={commentContent}
+                        onChange={handleCommentChange}
                       ></textarea>
                     </div>
                     <div className="d-flex justify-content-end">
                       <button
+                        value={inputComment}
                         className="button border-0"
+                        onClick={handleSubmitComment}
                       >
                         Submit Review
                       </button>
                     </div>
                   </form>
                 </div>
-                <div className="reviews mt-4 ">
-                  <div className="review">
-                    <div className="d-flex gap-10 align-items-center">
-                      <h6 className="mb-0">Navdeep</h6>
-                      {/* Thư việc reactStars */}
-                      <ReactStars
-                        count={5}
-                        size={24}
-                        value={4}
-                        isHalf={false} // Dòng này ngăn ko cho sữa
-                        activeColor="#ffd700"
-                      />
+                <div className="reviews mt-4">
+                  {comment.map((commentItem: any, index) => (
+                    <div className="review" key={index}>
+                      <div className="d-flex gap-10 align-items-center">
+                        <h6 className="mb-0">
+                          {commentItem?.idUser.firstname}
+                        </h6>
+                        <ReactStars
+                          count={5}
+                          size={24}
+                          isHalf={false}
+                          activeColor="#ffd700"
+                        />
+                      </div>
+                      <p className="mt-3">{commentItem.content}</p>
                     </div>
-                    <p className="mt-3">
-                      Lorem ipsum dolor sit amet consectetuer adipiscing elit
-                      sed diam nonummy nibh
-                    </p>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>

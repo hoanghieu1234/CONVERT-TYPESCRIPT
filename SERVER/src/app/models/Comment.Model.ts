@@ -6,22 +6,20 @@ const COLLECTION_NAME = "comments";
 const DOCUMENT_NAME = "Comment";
 
 interface IComment extends Document {
-  user: IUser["_id"];
-  product: IProduct["_id"];
+  idUser: IUser["_id"];
+  idProduct: IProduct["_id"];
   content: string;
-  rating: number;
-  createdAt: Date;
-  updatedAt: Date;
+
 }
 
 const commentSchema: Schema<IComment> = new Schema(
   {
-    user: {
+    idUser: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    product: {
+    idProduct: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
       required: true,
@@ -29,12 +27,6 @@ const commentSchema: Schema<IComment> = new Schema(
     content: {
       type: String,
       required: true,
-    },
-    rating: {
-      type: Number,
-      required: true,
-      min: 1,
-      max: 5,
     },
   },
   {
