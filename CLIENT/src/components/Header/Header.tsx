@@ -4,8 +4,8 @@ import { BsSearch } from "react-icons/bs";
 import { AiOutlineLogout } from "react-icons/ai";
 import getCartItem from "../../api/cart.api";
 import "./Header.css";
-import { useDispatch, useSelector } from "react-redux";
-import { updateState } from "../../redux/reduce/updateSlice";
+import { useSelector } from "react-redux";
+// import { updateState } from "../../redux/reduce/updateSlice";
 
 interface CartItem {
   _id: string;
@@ -21,17 +21,15 @@ interface CartItem {
 const Header: React.FC = () => {
   const [logOut, setLogOut] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const isUpdate = useSelector((state: { update: string }) => state.update);
   const getUserLocal = JSON.parse(localStorage.getItem("userLogin") as string);
+  const quantityRef = React.useRef<number>(0);
 
   const handleLogOut = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("userLogin");
-
+    quantityRef.current = 0
     setLogOut(false);
     navigate("/login");
-    dispatch(updateState());
   };
   let getAccessToken = localStorage.getItem("accessToken") as string;
 
@@ -47,27 +45,38 @@ const Header: React.FC = () => {
     checkAccessToken();
   }, [getAccessToken]);
 
-  // cartItem
-  const quantityRef  = React.useRef<number>(0) 
+  // CART_ITEM
   const [_cartItems, setCartItems] = useState<CartItem[]>([]);
-  let idUser = JSON.parse(localStorage.getItem("userLogin") as string)?.data._id;
+  let idUser = JSON.parse(localStorage.getItem("userLogin") as string)?.data
+    ._id;
   const getCartItems = async (id: string) => {
     const response = await getCartItem.getCartItem(id);
-    const items: CartItem[] = response.data;
-    quantityRef.current = items.reduce((total, product) => {
-      return total= total + product.quantity
-    }, 0)
+    const items: CartItem[] | any = response.data;
+    console.log(items, 123);
+    if (items.msg === "Giỏ hàng trống") {
+      console.log("đã vào đây 11");
+      setCartItems([]);
+      return (quantityRef.current = 0);
+    }
+    console.log("đã vào đây 22");
+
+    quantityRef.current = items.reduce((total: any, product: any) => {
+      return (total = total + product.quantity);
+    }, 0);
     setCartItems(items);
   };
+
   useEffect(() => {
+    console.log(1111, "okkkkk");
+
     idUser = JSON.parse(localStorage.getItem("userLogin") as string)?.data._id;
-    if (idUser && isUpdate) {
+    if (idUser) {
       getCartItems(idUser);
+    } else {
+      quantityRef.current = 0;
     }
   }, [isUpdate]);
 
-
- 
   return (
     <>
       <header className="header-top-strip py-3">
@@ -143,14 +152,13 @@ const Header: React.FC = () => {
                     className="d-flex align-items-center gap-10 text-white "
                   >
                     <img src="images/cart.svg" alt="cart" />
-                 
-                      <div className="d-flex flex-column gap-10">
-                        <span className="badge bg-white text-dark">
+
+                    <div className="d-flex flex-column gap-10">
+                      <span className="badge bg-white text-dark">
                         {quantityRef.current}
-                        </span>
-                        {/* <p className="mb-0">{result} $</p> */}
-                      </div>
-                  
+                      </span>
+                      {/* <p className="mb-0">{result} $</p> */}
+                    </div>
                   </Link>
                 </div>
                 {!logOut ? (
@@ -168,8 +176,8 @@ const Header: React.FC = () => {
                 ) : (
                   <div>
                     <span className="text-white">
-                      {getUserLocal.data.firstname}
-                      {getUserLocal.data.lastname}
+                      {getUserLocal?.data?.firstname}
+                      {getUserLocal?.data?.lastname}
                     </span>
                     <Link
                       to="/login"

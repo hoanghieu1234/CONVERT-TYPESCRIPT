@@ -11,12 +11,12 @@ import OurStore from "../pages/OurStore/OurStore";
 import Contact from "../pages/Contact/Contact";
 import SingleProduct from "../pages/SingleProduct/SingleProduct";
 import RequireCart from "../components/RequireCart/RequireCart";
+import RequireAuth from "../components/RequireAuth";
 
 type Props = {};
 
 const Router: React.FC = (props: Props) => {
-
-  //nếu như mà có người dùng thì show giỏ hàng còn không show ra trang liên quan tới hãy đăng nhập để xem giỏ hàng 
+  //nếu như mà có người dùng thì show giỏ hàng còn không show ra trang liên quan tới hãy đăng nhập để xem giỏ hàng
   return (
     <Routes>
       <Route
@@ -76,14 +76,16 @@ const Router: React.FC = (props: Props) => {
         }
       />
       {/* <Route element={<RequireAuth />}> */}
-
-      <Route
-        path="/cart"
-        element={
-          <User> <RequireCart/> </User>
-        }
-      />
-        
+      <Route element={<RequireAuth />}>
+        <Route
+          path="/cart"
+          element={
+            <User>
+              <RequireCart />
+            </User>
+          }
+        />
+      </Route>
 
       {/* </Route> */}
 

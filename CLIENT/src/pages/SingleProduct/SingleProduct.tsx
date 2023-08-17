@@ -20,13 +20,27 @@ const SingleProduct = () => {
   const location = useLocation();
   const [product, setProduct] = useState<any>();
   const navigate = useNavigate();
-  const getUserLogin = JSON.parse(localStorage.getItem("userLogin") as any)
+  const getUserLogin = JSON.parse(localStorage.getItem("userLogin") as any);
   const [isLoading, setIsLoading] = useState(true);
   const idProduct = location.pathname.split("/")[2];
   const idUser = getUserLogin?.data?._id;
-  console.log(idUser,123123);
-  
-  
+
+  // COMMENT START
+  // const [rating, setRating] = useState(0);
+  // const [commentContent, setCommentContent] = useState("");
+
+
+  // const handleRatingChange = (newRating: number) => {
+  //   setRating(newRating);
+  // };
+
+  // const handleCommentChange = (
+  //   event: React.ChangeEvent<HTMLTextAreaElement>
+  // ) => {
+  //   setCommentContent(event.target.value);
+  // };
+  // COMMENT END
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -83,6 +97,9 @@ const SingleProduct = () => {
         });
     }
   };
+
+  //  SUBMIT COMMENTS
+
   return (
     <>
       {isLoading && <LoadingComponent />}
@@ -290,9 +307,10 @@ const SingleProduct = () => {
                       <ReactStars
                         count={5}
                         size={24}
-                        value={4}
-                        // edit={true} // Dòng này ngăn ko cho sữa
+                        // value={rating}
+                        isHalf={true} // Dòng này ngăn ko cho sữa
                         activeColor="#ffd700"
+                        // onChange={handleRatingChange}
                       />
                     </div>
                     <div>
@@ -303,10 +321,16 @@ const SingleProduct = () => {
                         rows={4}
                         className="w-100 form-control"
                         placeholder="comments"
+                        // value={commentContent}
+                        // onChange={handleCommentChange}
                       ></textarea>
                     </div>
                     <div className="d-flex justify-content-end">
-                      <button className="button border-0">Submit Review</button>
+                      <button
+                        className="button border-0"
+                      >
+                        Submit Review
+                      </button>
                     </div>
                   </form>
                 </div>
@@ -319,7 +343,7 @@ const SingleProduct = () => {
                         count={5}
                         size={24}
                         value={4}
-                        // edit={false} // Dòng này ngăn ko cho sữa
+                        isHalf={false} // Dòng này ngăn ko cho sữa
                         activeColor="#ffd700"
                       />
                     </div>

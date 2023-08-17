@@ -26,7 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
 
   return (
     <>
-      {products.map((product) => (
+      {products?.map((product) => (
         <div
           className={`${
             location.pathname === "/store" ? `gr-${grid}` : "col-3"

@@ -7,7 +7,9 @@
   background-color: rgba(0, 0, 0, 0.3);
   display: grid;
   place-items: center;
+  z-index: 10000;
 }
+
 
 .modal-exp {
   background-color: #fff;

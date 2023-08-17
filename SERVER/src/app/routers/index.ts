@@ -4,6 +4,7 @@ import userRoute from "./user.route";
 import paymentRoute from "./payment.route";
 import uploadRoute from "./upload.route";
 import cartRoute from "./cart.route";
+import commnentRoute from "./commnent.route";
 
 export default function Router(app: Express) {
   productRoute(app);
@@ -11,4 +12,5 @@ export default function Router(app: Express) {
   paymentRoute(app);
   uploadRoute(app)
   cartRoute(app);
+  commnentRoute(app);
 }
